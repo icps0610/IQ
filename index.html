@@ -52,23 +52,33 @@
     </table>
 
     <script>
-        // 名字清單
-        const names = ["黃文杰", "鄭建志", "吳志偉", "邱曉萍", "陳宗翰", "莊家豪", "江正豪", "李嘉欣", "羅欣怡", "鄭靜香", "謝宗翰", "蕭佳玲", "鄭偉杰", "黃俊豪", "何宗翰", "郭宇翔", "呂信潔", "吳宏偉", "羅文杰", "蘇志明", "江俊豪", "江大雄", "何小美", "高嘉欣", "羅正豪", "周怡君", "邱偉杰", "楊志明", "楊庭瑋", "羅宗翰", "曾宗翰", "鄭曉萍", "劉佳玲", "江思婷", "葉小美", "潘冠宇", "曾正豪", "許信宏", "呂欣怡", "許思婷", "賴大雄", "鄭佩玲", "江靜香", "謝家豪", "吳欣怡", "黃曉琳", "蘇信潔", "蔡曉萍", "莊怡君", "鄭大雄", "羅美惠", "黃美惠", "李俊豪", "羅嘉欣", "何宇翔", "羅曉萍", "蘇宇翔", "何思婷", "許美惠", "呂曉雯", "王嘉文", "洪宇翔", "羅思婷", "黃大雄", "賴嘉欣", "何宏偉", "陳曉萍", "陳曉萍", "潘思婷", "高曉琳", "葉佳玲", "蘇建志", "周曉雯", "李庭瑋", "李宇翔", "廖宇翔", "郭思婷", "廖思婷", "莊美惠", "林佩玲", "何嘉欣", "曾嘉文", "吳曉萍", "李信潔", "呂建志", "謝小美", "鄭佩玲", "鄭宇翔", "林小美", "林嘉欣", "羅志偉", "周建志", "呂宗翰", "楊建志", "廖曉琳", "葉小美", "羅庭瑋", "蔡美惠", "何嘉欣", "潘曉琳"];
+        // 名字清單（分為男生和女生）
+        const maleNames = ["黃文杰", "鄭建志", "吳志偉", "邱曉萍", "陳宗翰", "莊家豪", "江正豪", "羅志偉", "呂建志", "周建志"];
+        const femaleNames = ["李嘉欣", "羅欣怡", "鄭靜香", "謝宗翰", "蕭佳玲", "黃曉琳", "蔡曉萍", "莊怡君", "何嘉欣", "潘曉琳"];
 
-        const getRandomName = () => names[Math.floor(Math.random() * names.length)];
-        const getRandomImage = () => {
-            const randomGender = Math.random() < 0.5 ? "male" : "female";
-            const uniqueParam = new Date().getTime() + Math.random();
-            return `https://xsgames.co/randomusers/avatar.php?g=${randomGender}&unique=${uniqueParam}`;
+        const getRandomNameAndGender = () => {
+            const isMale = Math.random() < 0.5; // 隨機選擇性別
+            if (isMale) {
+                return { name: maleNames[Math.floor(Math.random() * maleNames.length)], gender: "male" };
+            } else {
+                return { name: femaleNames[Math.floor(Math.random() * femaleNames.length)], gender: "female" };
+            }
         };
+
+        const getPhotoByGender = (gender) => {
+            const uniqueParam = new Date().getTime() + Math.random(); // 確保每次圖片不重複
+            return `https://xsgames.co/randomusers/avatar.php?g=${gender}&unique=${uniqueParam}`;
+        };
+
         const getRandomIQ = () => Math.floor(Math.random() * 50) + 100; // IQ 在 100~149 之間
 
         // 生成 99 筆隨機資料
         const data = [];
         for (let i = 0; i < 99; i++) {
+            const { name, gender } = getRandomNameAndGender();
             data.push({
-                name: getRandomName(),
-                photo: getRandomImage(),
+                name: name,
+                photo: getPhotoByGender(gender),
                 iq: getRandomIQ(),
             });
         }
