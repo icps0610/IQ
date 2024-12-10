@@ -6,32 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>全台灣聰明排行前100名</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
 
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+    }
 
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
 
-        th {
-            background-color: #f2f2f2;
-        }
+    th {
+        background-color: #f2f2f2;
+    }
 
-        img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-        }
+    img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
     </style>
 </head>
 
@@ -50,72 +50,71 @@
             <!-- 動態生成內容 -->
         </tbody>
     </table>
-
     <script>
-        // 名字清單（分為男生和女生）
-        const maleNames = ["黃文杰", "鄭建志", "吳志偉", "邱曉萍", "陳宗翰", "莊家豪", "江正豪", "羅志偉", "呂建志", "周建志"];
-        const femaleNames = ["李嘉欣", "羅欣怡", "鄭靜香", "謝宗翰", "蕭佳玲", "黃曉琳", "蔡曉萍", "莊怡君", "何嘉欣", "潘曉琳"];
+    // 名字清單（分為男生和女生）
+    const maleNames = ["黃文杰", "鄭建志", "吳志偉", "陳宗翰", "莊家豪", "江正豪", "羅志偉", "呂建志", "周建志", "謝宗翰", "王嘉文", "洪宇翔", "李俊豪", "潘佛生", "石沛宸", "溫迦文", "呂宇祥", "紀忠哲", "翁德行", "孔仕豐", "武薌庭", "郭俊升", "蕭祉呈", "翁宗聖", "邵立洋", "侯奮耀", "殷恆毅", "石禎祥", "管博金", "辜博奧", "辛耀邦", "徐庭毅", "向韋延", "秦永軒"];
+    const femaleNames = ["李嘉欣", "羅欣怡", "鄭靜香", "蕭佳玲", "黃曉琳", "蔡曉萍", "莊怡君", "何嘉欣", "潘曉琳","辜艾琦","藍奕姿","關凱羚","田芷琦","蕭寶盈","賀雙瑜","康鳴薇","樊碧珊","姜嘉雯","連琦茜","白琬雅","藍璻澕","伍芍琳","韋敏華","蔣煉彤","王栢瑩","邵佩玲","羅晅翹","錢綺伊","武悅山","侯可芹"];
 
-        const getRandomNameAndGender = () => {
-            const isMale = Math.random() < 0.5; // 隨機選擇性別
-            if (isMale) {
-                return { name: maleNames[Math.floor(Math.random() * maleNames.length)], gender: "male" };
-            } else {
-                return { name: femaleNames[Math.floor(Math.random() * femaleNames.length)], gender: "female" };
-            }
-        };
-
-        const getPhotoByGender = (gender) => {
-            const uniqueParam = new Date().getTime() + Math.random(); // 確保每次圖片不重複
-            return `https://xsgames.co/randomusers/avatar.php?g=${gender}&unique=${uniqueParam}`;
-        };
-
-        const getRandomIQ = () => Math.floor(Math.random() * 50) + 100; // IQ 在 100~149 之間
-
-        // 生成 99 筆隨機資料
-        const data = [];
-        for (let i = 0; i < 99; i++) {
-            const { name, gender } = getRandomNameAndGender();
-            data.push({
-                name: name,
-                photo: getPhotoByGender(gender),
-                iq: getRandomIQ(),
-            });
+    const getRandomNameAndGender = () => {
+        const isMale = Math.random() < 0.5; // 隨機選擇性別
+        if (isMale) {
+            return { name: maleNames[Math.floor(Math.random() * maleNames.length)], gender: "male" };
+        } else {
+            return { name: femaleNames[Math.floor(Math.random() * femaleNames.length)], gender: "female" };
         }
+    };
 
-        // 加入指定姓名，並隨機產生 IQ 和照片
+    const getPhotoByGender = (gender) => {
+        const uniqueParam = new Date().getTime() + Math.random(); // 確保每次圖片不重複
+        return `https://xsgames.co/randomusers/avatar.php?g=${gender}&unique=${uniqueParam}`;
+    };
+
+    const getRandomIQ = () => Math.floor(Math.random() * 50) + 100; // IQ 在 100~149 之間
+
+    // 生成 99 筆隨機資料
+    const data = [];
+    for (let i = 0; i < 99; i++) {
+        const { name, gender } = getRandomNameAndGender();
         data.push({
-            name: "李仁琮",
-            photo: "f.png",
-            iq: 152,
+            name: name,
+            photo: getPhotoByGender(gender),
+            iq: getRandomIQ(),
         });
-        data.push({
-            name: "黃秀滿",
-            photo: "m.png",
-            iq: 151,
-        });
+    }
 
-        data.push({
-            name: "張聿昕",
-            photo: "s.png",
-            iq: 150,
-        });
+    // 加入指定姓名，並隨機產生 IQ 和照片
+    data.push({
+        name: "李仁琮",
+        photo: "f.png",
+        iq: 152,
+    });
+    data.push({
+        name: "黃秀滿",
+        photo: "m.png",
+        iq: 151,
+    });
 
-        // 按 IQ 降序排列
-        data.sort((a, b) => b.iq - a.iq);
+    data.push({
+        name: "張聿昕",
+        photo: "s.png",
+        iq: 150,
+    });
 
-        // 生成表格內容
-        const rankingTable = document.getElementById("ranking-table");
-        data.forEach((item, index) => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
+    // 按 IQ 降序排列
+    data.sort((a, b) => b.iq - a.iq);
+
+    // 生成表格內容
+    const rankingTable = document.getElementById("ranking-table");
+    data.forEach((item, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
                 <td>${index + 1}</td>
                 <td>${item.name}</td>
                 <td><img src="${item.photo}" alt="照片"></td>
                 <td>${item.iq}</td>
             `;
-            rankingTable.appendChild(row);
-        });
+        rankingTable.appendChild(row);
+    });
     </script>
 </body>
 
